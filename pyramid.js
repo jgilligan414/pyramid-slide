@@ -1,40 +1,39 @@
-document.getElementById("height_slide").oninput = function() {myFunction()};
-
-function myFunction() {
-    //get height value and convert to int
-    heightStr = document.getElementById("height_slide").value;
-    height = parseInt(heightStr);
-
-    //get the symbol to use as bricks
-    document.getElementById("brick").onchange = function() {getBrick()};
-
-    function getBrick(){
-        brick_type = document.getElementById("brick").value;
-    }
-
-    drawPyramid(height, brick_type);
-}
-
-/*
-height = document.getElementById("height_slide").value;
-height = parseInt(height);
-
-brick_type = document.getElementById("brick").value;
-
 document.getElementById("height_slide").oninput = function() {changeHeight()};
 function changeHeight() {
-    drawPyramid(height, brick_type);
+    //clear number value area
+    document.getElementById("height_val").innerHTML = "";
+
+    //get height and convert to int
+    height = document.getElementById("height_slide").value;
+    py_height = parseInt(height);
+
+    //show height value
+    // var h = document.createElement("p");
+    // h.innerHTML = py_height;
+    document.getElementById("height_val").innerHTML = py_height;
+
+    //get brick character
+    brick_type = document.getElementById("brick").value;
+
+    drawPyramid(py_height, brick_type);
 }
 
 document.getElementById("brick").onchange = function() {changeBrick()};
 function changeBrick() {
-    drawPyramid(height, brick_type);
+    //get height and convert to int
+    height = document.getElementById("height_slide").value;
+    py_height = parseInt(height);
+
+    //get brick character
+    brick_type = document.getElementById("brick").value;
+
+    drawPyramid(py_height, brick_type);
 }
-*/
+
 
 function drawPyramid(height, brick_type) {
 
-    // first, clear the old content
+    // clear previous content
     document.getElementById("pyramid").innerHTML = "";
 
     // for each row....
@@ -47,20 +46,15 @@ function drawPyramid(height, brick_type) {
         // build up a string for this row
         var rowStr = "";
         for (var i = 0; i < numSpaces; i++) {
-            rowStr += ".";
+            var spaces = "&nbsp";
+            rowStr += spaces;
         }
         for (var i = 0; i < numBricks; i++) {
             rowStr += brick_type;
         }
-
-       // create a text element with the string of characters
-       textElem = document.createTextNode(rowStr);
-
-       // create a <p> element with the text inside
-       rowElem = document.createElement("p");
-       rowElem.appendChild(textElem);
-
-       // insert the paragraph as a child of the container <div>
-       document.getElementById("pyramid").appendChild(rowElem);
-   }
+        // make a <p> element for this row, and insert it into the #pyramid container
+        var rowElem = document.createElement("p");
+        rowElem.innerHTML = rowStr;
+        document.getElementById("pyramid").appendChild(rowElem);
+    }
 }

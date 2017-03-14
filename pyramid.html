@@ -3,19 +3,40 @@
 <head>
     <title>Pyramid Slide!</title>
     <style>
+        #header {
+            background-color: #BA55D3;
+            color: #F8F8FF;
+            padding: 2em;
+        }
+        #pyramid-area {
+            background-color: #F8F8FF;
+            margin: 0 30em;
+            border-radius: 5px;
+            border: 2px solid;
+            border-color: #BA55D3;
+        }
+        #menu {
+            background-color: #D3D3D3;
+            padding: 1em;
+        }
+        #slider {
+            display: inline;
+        }
         #pyramid {
             line-height: 0;
             font-size: 30px;
         }
 
         body {
-            font-family: "Arial", monospace;
+            font-family: "Courier New", monospace;
             text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>Pyramid Slide!</h1>
+    <div id="header">
+        <h1>Pyramid Slide!</h1>
+    </div>
     <br>
     <div id="pyramid-area">
         <div id="menu">
@@ -26,11 +47,15 @@
                 <option value="$">$</option>
                 <option value="X">X</option>
             </select>
-            <label>Height:</label>
-            <input type="range" id="height_slide" name="height_slide" min="1" max="20">
+            <div id="slider">
+                <label>Height:</label>
+                <input type="range" id="height_slide" name="height_slide" min="1" max="20">
+                <span id="height_val"></span>
+            </div>
         </div>
         <br><br>
         <div id="pyramid"></div>
+        <br><br>
     </div>
     <script src="pyramid.js"></script>
 </body>
